@@ -3,10 +3,31 @@ version: 2
 sources:
   - name: raw
     schema: gz_raw_data
+    description: greenweez raw data set
     tables:
       - name: product
         identifier: raw_gz_product
+        description: greenweez product
+        columns:
+          - name: products_id
+            description: primary key of the table
+            tests:
+              - unique
+              - not_null
+
       - name: sales
         identifier: raw_gz_sales
+        description: greenweez sales
+        tests:
+          - unique:
+              column_name: "(orders_id|| '-' || pdt_id)"
+
       - name: ship
         identifier: raw_gz_ship
+        description: greenweez ship
+        columns:
+          - name: orders_id
+            description: primary key of the table
+            tests:
+              - unique
+              - not_null
