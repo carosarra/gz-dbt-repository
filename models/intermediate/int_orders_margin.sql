@@ -5,6 +5,7 @@ orders_id
 ,round(sum(quantity),1) as quantity
 ,round(sum(purchase_cost),2) as purchase_cost
 ,round(sum(margin),2) as margin
+
 from {{ref('int_sales_margin')}}
 group by orders_id, date_date
 order by orders_id DESC
